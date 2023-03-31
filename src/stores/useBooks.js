@@ -5,116 +5,112 @@ export const useBooks = defineStore('books', {
     books: [
       {
         id: 1,
-        title: 'Elektornika',
-        author: 'Witold Wrotek',
-        description: "Urządzenia elektronicznie otaczają nas zewsząd. Nie sposób obecnie wykonać nawet najprostszej czynności, która nie wymagałaby użycia jakiegoś rodzaju sprzętu elektronicznego. Smartfony, mikrofalówki, pralki automatyczne czy bankomaty to tylko niektóre przykłady urządzeń, bez których trudno wyobrazić sobie codzienne życie. Tymczasem większość z nas nie ma nawet cienia pojęcia o tym, jak działają układy elektroniczne, a gdy cokolwiek zaczyna szwankować, potrzebujemy pomocy fachowca lub... rozglądamy się za nowszym modelem.Celem tej książki jest bezbolesne wprowadzenie czytelnika w niezwykle interesujący i tajemniczy świat elektroniki. Dzięki praktycznym przykładom może on w swoim tempie, w naturalny i bezpieczny sposób poznawać zjawiska fizyczne odpowiedzialne za działanie urządzeń elektronicznych i stopniowo odkrywać coraz bardziej zaawansowane zagadnienia, nie zniechęcając się nadmiarem teorii czy specjalistycznym żargonem. Nauka przed doświadczenie - to motyw przewodni tej książki, pora zatem zakasać rękawy i rozpocząć eksperymenty!",
-        poster: '../../posters/eleprp.jpg',
-        file: '../../books/elektronika.pdf',
-        maxPages: 20,
+        title: 'Dot NET Framework Notes For Professionals',
+        author: 'Goal Kicker',
+        description: "This is an unofficial free book created for educational purposes and is not affiliated with official .NET Framework group(s) or company(s).",
+        poster: '../../posters/dotnet.jpg',
+        file: '../../books/DotNETFrameworkNotesForProfessionals.pdf',
+        maxPages: 192,
         savedPage: null,
         releaseDate: '2022-03-08',
         chapters: [
           {
-            name: 'POCZĄTEK WSZYSTKIEGO, CZYLI ŹRÓDŁA',
-            page: 2
+            name: 'Getting started with .NET Framework',
+            page: 10
           },
           {
-            name: 'WYKONUJEMY WŁASNĄ ELEKTROWNIĘ',
-            page: 5
+            name: 'Strings',
+            page: 13
           },
           {
-            name: 'JAK KONTROLOWAĆ PRĄD ELEKTRYCZNY?',
-            page: 11
+            name: 'DateTime parsing',
+            page: 17
           },
         ],
         genres: ['Horror']
       },
       {
         id: 2,
-        title: 'C++20. Laboratorium',
-        author: 'Dawid Farbaniec',
-        description: "Programowanie to w dużym uproszczeniu wydawanie komputerowi odpowiednich poleceń. Aby jednak móc to robić, trzeba opanować trudną sztukę komunikacji z maszyną, co w praktyce sprowadza się do posługiwania się zrozumiałym dla niej językiem. Obecnie niemal nikt nie musi się już uczyć języków niskopoziomowych, które są minimalistyczne i niezawodne, ale trudne do nauki i zastosowania w przypadku złożonych projektów. Z pomocą przychodzą tu języki wysokopoziomowe, a zwłaszcza łączący dużą wydajność z potężnymi możliwościami C++.",
-        poster: '../../posters/cpp20l.jpg',
-        file: '../../books/c labolatorium.pdf',
-        maxPages: 20,
+        title: 'AngularJS Notes For Professionals',
+        author: 'Goal',
+        description: "This is an unofficial free book created for educational purposes and is not affiliated with official .NET Framework group(s) or company(s).",
+        poster: '../../posters/angular.jpg',
+        file: '../../books/AngularJSNotesForProfessionals.pdf',
+        maxPages: 201,
         savedPage: null,
         releaseDate: '2022-03-15',
         chapters: [
           {
-            name: 'POCZĄTEK WSZYSTKIEGO, CZYLI ŹRÓDŁA',
-            page: 2
+            name: 'Getting started with AngularJS',
+            page: 9
           },
           {
-            name: 'WYKONUJEMY WŁASNĄ ELEKTROWNIĘ',
-            page: 5
+            name: 'Modules',
+            page: 20
           },
           {
-            name: 'JAK KONTROLOWAĆ PRĄD ELEKTRYCZNY?',
-            page: 11
+            name: 'Components',
+            page: 22
           },
           {
-            name: 'DWA ŁYKI MATEMATYKI, CZYLI DLACZEGO REZYSTOR DYMI',
-            page: 16
+            name: 'Built-in directives',
+            page: 26
           }
         ],
         genres: ['Romance']
       },
       {
         id: 3,
-        title: 'Zaawansowana analiza danych',
-        author: 'aaa aaa',
-        description: "Sukces przedsiębiorstwa zależy od jakości podejmowanych decyzji. Spośród strategii, które wspierają ten proces, na szczególną uwagę zasługuje zastosowanie analizy danych. Jest to jednak dość złożona dziedzina. Podstawowym narzędziem wielu analityków danych jest arkusz kalkulacyjny. Ma on tę zaletę, że ułatwia solidne zrozumienie prawideł statystyki i analizy danych. Po zdobyciu takich podstaw warto jednak pójść dalej i nauczyć się eksploracyjnej analizy danych za pomocą języków programowania.",
-        poster: '../../posters/zaanda.jpg',
-        file: '../../books/zaawansowana analiza danych.pdf',
-        maxPages: 20,
+        title: 'Bash Notes For Professionals',
+        author: 'Kicker',
+        description: "This is an unofficial free book created for educational purposes and is not affiliated with official .NET Framework group(s) or company(s).",
+        poster: '../../posters/bash.jpg',
+        file: '../../books/BashNotesForProfessionals.pdf',
+        maxPages: 204,
         savedPage: null,
         releaseDate: '2022-03-15',
         chapters: [
           {
-            name: 'POCZĄTEK WSZYSTKIEGO, CZYLI ŹRÓDŁA',
-            page: 2
-          },
-          {
-            name: 'WYKONUJEMY WŁASNĄ ELEKTROWNIĘ',
-            page: 5
-          },
-          {
-            name: 'JAK KONTROLOWAĆ PRĄD ELEKTRYCZNY?',
+            name: 'Getting started with Bash',
             page: 11
           },
           {
-            name: 'DWA ŁYKI MATEMATYKI, CZYLI DLACZEGO REZYSTOR DYMI',
-            page: 16
+            name: 'Script shebang',
+            page: 17
+          },
+          {
+            name: 'Navigating directories',
+            page: 19
+          },
+          {
+            name: 'Listing Files',
+            page: 21
+          },
+          {
+            name: 'Using cat',
+            page: 25
           }
         ],
         genres: ['Romance', 'Fantasy']
       },
       {
         id: 4,
-        title: 'Czysty kod w Pythonie',
-        author: 'Mariano Anaya',
-        description: "Popularność Pythona, ulubionego języka programistów i naukowców, stale rośnie. Jest on bowiem łatwy do nauczenia się: nawet początkujący programista może napisać działający kod. W efekcie, mimo że Python pozwala na pisanie kodu przejrzystego i prostego w konserwacji, zdarzają się przypadki kodu źle zorganizowanego, nieczytelnego i praktycznie nietestowalnego. Jedną z przyczyn tego stanu rzeczy jest tendencja niektórych programistów do pisania kodu bez czytelnej struktury. Zidentyfikowanie takich problemów i ich rozwiązywanie nie jest łatwym zadaniem.",
-        poster: '../../posters/czyko2.jpg',
-        file: '../../books/czysty kod w pythonie.pdf',
-        maxPages: 20,
+        title: 'CSS Notes For Professionals',
+        author: 'Goal Kicker',
+        description: "This is an unofficial free book created for educational purposes and is not affiliated with official .NET Framework group(s) or company(s).",
+        poster: '../../posters/css.jpg',
+        file: '../../books/CSSNotesForProfessionals.pdf',
+        maxPages: 244,
         savedPage: null,
         releaseDate: '2022-03-22',
         chapters: [
           {
-            name: 'POCZĄTEK WSZYSTKIEGO, CZYLI ŹRÓDŁA',
-            page: 2
+            name: 'Getting started with CSS',
+            page: 10
           },
           {
-            name: 'WYKONUJEMY WŁASNĄ ELEKTROWNIĘ',
-            page: 5
-          },
-          {
-            name: 'JAK KONTROLOWAĆ PRĄD ELEKTRYCZNY?',
-            page: 11
-          },
-          {
-            name: 'DWA ŁYKI MATEMATYKI, CZYLI DLACZEGO REZYSTOR DYMI',
-            page: 16
+            name: ' Structure and Formatting of a CSS Rule',
+            page: 15
           }
         ],
         genres: ['Fantasy', 'History', 'Sci-fi', 'Science']
