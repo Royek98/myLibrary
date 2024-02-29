@@ -25,4 +25,11 @@ div {
     scrollbar-width: thin;
 }
 
+@media (max-width: 766px) {
+  div {
+    width: 100vw !important;
+    padding-left: 0%;
+  }
+}
+
 </style>

@@ -31,5 +31,11 @@ input[type=text] {
     width: 12vw;
 }
 
+@media (max-width: 766px) {
+    input[type=text] {
+    width: 80vw !important;
+  }
+}
+
 
 </style>

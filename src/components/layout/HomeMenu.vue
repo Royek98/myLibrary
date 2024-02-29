@@ -1,14 +1,14 @@
 <template>
-  <div id="mainMenu">
-    <the-logo></the-logo>
+  <div id="homeMenu">
+    <the-logo></the-logo> <br />
     <search-bar></search-bar>
     <genres-selector></genres-selector>
     <sort-by></sort-by>
-    <div id="add">
-      <router-link to="/add"
-        >Book <i class="fa fa-plus-circle" aria-hidden="true"></i
-      ></router-link>
-    </div>
+    <router-link class="add" to="/add">Book <i class="fa fa-plus-circle" aria-hidden="true"></i></router-link>
+    <br />
+    <br />
+    <br />
+    <br />
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-#mainMenu {
+#homeMenu {
   color: #d6d8db;
 }
 
@@ -46,7 +46,11 @@ a:hover {
   color: #393e46;
 }
 
-#add {
-    margin-top: 5vh;
+.add {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
 }
 </style>

@@ -26,3 +26,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@media (max-width: 766px) {
+  div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+</style>

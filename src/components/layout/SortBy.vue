@@ -66,7 +66,11 @@ ul {
 
 li {
   visibility: hidden;
-  padding: 5px;
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
 }
 
 li:hover {
@@ -77,7 +81,6 @@ li:hover {
 li.show {
   visibility: visible;
 }
-
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -93,4 +96,8 @@ li.show {
 .noselect:hover {
   cursor: pointer;
 } 
+
+span {
+  font-size: 18px;
+}
 </style>

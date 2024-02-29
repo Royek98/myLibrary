@@ -1,5 +1,5 @@
 <template>
-  <p class="noselect" @click="show = !show">Genres:</p>
+  <p class="noselect genreButton" @click="show = !show">Genres:</p>
   <div v-if="show">
     <label class="noselect" v-for="genre in genres" :key="genre" :for="genre"
       ><input
@@ -88,5 +88,13 @@ input[type="checkbox"]:hover + .label {
 
 .noselect:hover {
   cursor: pointer;
+}
+
+.genreButton {
+  display: block;
+  width: 50%;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
