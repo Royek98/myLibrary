@@ -3,7 +3,7 @@
     <vue-pdf-embed :source="source1" :page="page1" />
     <br /><br />
     <div class="readerMenu">
-      <button class="option1" @click="goBack">
+      <button class="option" @click="goBack">
         <span class="fa fa-home"></span>
       </button>
       <button class="option" @click="previousPage">
@@ -22,7 +22,8 @@
       >
         <span class="fa fa-bookmark"></span>
       </button>
-      <span :class="{ alert: !show }">Page saved!</span>
+      <!-- :class="{ alert: !show }" -->
+      <span v-if="show">Page saved!</span>
     </div>
   </div>
 </template>
@@ -100,7 +101,7 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (min-width: 1366px) {
+@media screen and (min-width: 767px) {
   div {
     background-color: #232931;
     margin-left: -3.5%;
@@ -111,23 +112,29 @@ export default {
     bottom: 0;
     background-color: #393e46;
     width: 62.5%;
-    margin-left: -15px;
+    margin-left: -20px;
     color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
   }
 
-  .option1 {
+  .option {
     background-color: rgb(1, 1, 26, 1);
     border: none;
     color: white;
     width: 4vw;
     height: inherit;
     text-decoration: none;
-    font-size: 1.5vw;
-    margin-left: 38%;
+    font-size: 1.5em;
     cursor: pointer;
-    display: inline-block;
+    /* display: inline-block; */
   }
 
+
+  /* 
   .option {
     background-color: rgb(1, 1, 26, 1);
     border: none;
@@ -146,10 +153,33 @@ export default {
 
   .option:hover {
     background-color: #4ecca3;
+  } */
+}
+
+@media (max-width: 766px) {
+  .readerMenu {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    justify-content: center;
+    align-items: center;
+    color: white;
   }
 
-  .alert {
-    visibility: hidden;
+  .option {
+    font-size: 1.5em;
+  }
+  
+  .option {
+    background-color: rgb(1, 1, 26, 1);
+    border: none;
+    color: white;
+    height: inherit;
+    text-decoration: none;
+    font-size: 2.5em;
+    cursor: pointer;
+    display: block;
+    /* display: inline-block; */
   }
 }
 </style>

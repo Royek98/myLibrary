@@ -97,11 +97,12 @@ nav {
     }
 }
 
-@media only screen and (max-height: 600px) {
+@media (max-height: 600px) {
     nav {
         overflow-y: scroll;
         scrollbar-color: #4ECCA3 #393E46;
         scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch; 
     }
 }
 </style>

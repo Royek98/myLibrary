@@ -122,5 +122,9 @@ a:hover {
     flex-direction: column;
     row-gap: 10px;
   }
+
+  img {
+    max-width: 75vw;
+  }
 }
 </style>

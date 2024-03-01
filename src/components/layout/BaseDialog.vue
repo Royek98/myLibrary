@@ -1,22 +1,29 @@
 <template>
   <teleport to="body">
-    <router-link to="/" v-if="!editing"
-      ><div class="backdrop" @click="$emit('close')" v-if="show"></div>
+    <router-link to="/" v-if="!editing">
+      <div class="backdrop" @click="$emit('close')" v-if="show"></div>
     </router-link>
     <div class="backdrop" v-if="show && editing"></div>
     <dialog open v-if="show">
-      <router-link to="/" v-if="!editing"
-        ><button class="close" @click="$emit('close')"><span class="fa fa-times"></span></button></router-link
-      >
+      <router-link to="/" v-if="!editing"><button class="close" @click="$emit('close')"><span
+            class="fa fa-times"></span></button></router-link>
       <div class="left">
         <slot name="poster"></slot>
-        <div class="genres"><slot name="genres"></slot></div>
+        <div class="genres">
+          <slot name="genres"></slot>
+        </div>
       </div>
       <div class="right">
-        <h1><slot name="title"></slot></h1>
-        <h2><slot name="author"></slot></h2>
+        <h1>
+          <slot name="title"></slot>
+        </h1>
+        <h2>
+          <slot name="author"></slot>
+        </h2>
         <slot name="read"></slot> <br />
-        <p><slot name="description"></slot></p>
+        <p>
+          <slot id="description" name="description"></slot>
+        </p>
       </div>
       <div class="bottom">
         <p class="chapters">Chapters</p>
@@ -136,6 +143,8 @@ P {
     display: flex;
     flex-direction: column;
   }
-
+  .right {
+    width: 90%;
+  }
 }
 </style>

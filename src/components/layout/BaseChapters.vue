@@ -53,10 +53,15 @@ li {
 }
  
 @media (max-width: 766px) {
+  ul {
+    margin-left: -50px;
+  }
+
   li {
     flex-direction: column;
     row-gap: 15px;
     align-items: start;
+    width: 80vw;
   }
 
   .title  {
