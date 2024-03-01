@@ -1,168 +1,78 @@
 <template>
   <form @submit.prevent="saveBook">
     <base-dialog show="true">
-      <template #title
-        >Title:
-        <input
-          type="text"
-          v-model.trim="book.title"
-          class="titleAndAuthor"
-          :class="{ invalid: invalidTitle() }"
-          @change="checkEditing"
-        />
-        <span style="white-space: nowrap"
-          >(<input
-            type="date"
-            v-model.trim="book.releaseDate"
-            class="titleAndAuthor"
-            @change="checkEditing"
-            :class="{ invalid: invalidDate() }"
-          />)</span
-        >
+      <template #title>Title:
+        <input type="text" v-model.trim="book.title" class="titleAndAuthor" :class="{ invalid: invalidTitle() }"
+          @change="checkEditing" />
+        <span style="white-space: nowrap">(<input type="date" v-model.trim="book.releaseDate" class="titleAndAuthor"
+            @change="checkEditing" :class="{ invalid: invalidDate() }" />)</span>
         Pages:
-        <input
-          type="number"
-          v-model.number="book.maxPages"
-          class="pagesInput"
-          @change="checkEditing"
-          :class="{ invalid: invalidMaxPages() }"
-        />
+        <input type="number" v-model.number="book.maxPages" class="pagesInput" @change="checkEditing"
+          :class="{ invalid: invalidMaxPages() }" />
       </template>
-      <template #author
-        >Author:
-        <input
-          type="text"
-          v-model.trim="book.author"
-          class="titleAndAuthor"
-          @change="checkEditing"
-          :class="{ invalid: invalidAuthor() }"
-        />
-        <span v-if="book.file.length <= 0"
-          >File: <input type="file" v-on:change="onFileChange"
-        /></span>
-        <span v-else
-          >File: <span style="font-size: 15px">{{ book.file }}</span>
-          <button
-            @change="checkEditing"
-            @click="removeFile()"
-            class="buttonWithBg"
-          >
-            <i class="fa fa-minus-circle" aria-hidden="true"></i></button
-        ></span>
+      <template #author>Author:
+        <input type="text" v-model.trim="book.author" class="titleAndAuthor" @change="checkEditing"
+          :class="{ invalid: invalidAuthor() }" />
+        <span v-if="book.file.length <= 0">File: <input type="file" v-on:change="onFileChange" /></span>
+        <span v-else>File: <span style="font-size: 15px">{{ book.file }}</span>
+          <button @change="checkEditing" @click="removeFile()" class="buttonWithBg">
+            <i class="fa fa-minus-circle" aria-hidden="true"></i></button></span>
       </template>
       <template #poster>
         <div v-if="book.poster !== null">
           <img :src="book.poster" />
-          <button
-            @change="checkEditing"
-            @click="book.poster = null"
-            class="buttonWithBg"
-          >
+          <button @change="checkEditing" @click="book.poster = null" class="buttonWithBg">
             <i class="fa fa-minus-circle" aria-hidden="true"></i>
           </button>
         </div>
         <div v-else>
-          <input
-            id="posterFile"
-            type="file"
-            @change="onPosterChange"
-          />
+          <input id="posterFile" type="file" @change="onPosterChange" />
         </div>
       </template>
       <template #genres>
-        <genre-badge v-for="genre in book.genres" :key="genre"
-          >{{ genre
-          }}<button
-            @click="
-              removeGenre(genre);
-              checkEditing();
-            "
-            class="removeBookBttn"
-          >
+        <genre-badge v-for="genre in book.genres" :key="genre">
+          {{ genre }}
+          <button @click="removeGenre(genre); checkEditing();" class="removeBookBttn">
             <i class="fa fa-minus-circle" aria-hidden="true"></i>
           </button>
         </genre-badge>
         <span v-if="genreAlert" id="genreAlert">Already a genre</span>
-        <button
-          @click="showGenres = true"
-          v-if="!showGenres"
-          class="buttonWithBg genreBttn"
-          :class="{ invalidGenre: invalidGenre() }"
-        >
+        <button @click="showGenres = true" v-if="!showGenres" class="buttonWithBg genreBttn"
+          :class="{ invalidGenre: invalidGenre() }">
           Genre<i class="fa fa-plus-circle" aria-hidden="true"></i>
         </button>
         <select v-if="showGenres">
           <option @click="showGenres = false">Cancel</option>
-          <option
-            v-for="gen in getGenres"
-            :key="gen"
-            @click="
-              addGenre(gen);
-              showGenres = false;
-              checkEditing();
-            "
-          >
+          <option v-for="gen in getGenres" :key="gen" @click="addGenre(gen); showGenres = false; checkEditing();">
             {{ gen }}
           </option>
         </select>
       </template>
       <template #description>
         Description:
-        <textarea
-          v-model.trim="book.description"
-          @change="checkEditing"
-          :class="{ invalid: invalidDesc() }"
-        ></textarea>
+        <textarea v-model.trim="book.description" @change="checkEditing" :class="{ invalid: invalidDesc() }"></textarea>
       </template>
       <template #read>
         <button class="read" @click="save" :class="{ unsaved: editing }">
           Save
         </button>
-        <router-link
-          class="otherOptions"
-          :to="linkBack"
-          @click="editing = false"
-          >Cancel</router-link
-        >
+        <router-link class="otherOptions" :to="linkBack" @click="editing = false">Cancel</router-link>
       </template>
       <template #chapters>
         <base-chapters v-for="(chapter, index) in book.chapters" :key="chapter">
           <template #num>{{ index + 1 }}</template>
-          <input
-            type="text"
-            v-model.trim="chapter.name"
-            class="chapterName"
-            @change="checkEditing"
-            :class="{ invalid: invalidNameChapter(index) }"
-          />
+          <input type="text" v-model.trim="chapter.name" class="chapterName" @change="checkEditing"
+            :class="{ invalid: invalidNameChapter(index) }" />
           <template #page>
-            <input
-              type="number"
-              min="1"
-              v-model.number="chapter.page"
-              class="chapterNumber"
-              @change="checkEditing"
-              :class="{ invalid: invalidNumber(index) }"
-            />
-            <button
-              @click="
-                removeChapter(chapter, index);
-                checkEditing();
-              "
-              class="buttonWithBg"
-            >
+            <input type="number" min="1" v-model.number="chapter.page" class="chapterNumber" @change="checkEditing"
+              :class="{ invalid: invalidNumber(index) }" />
+            <button @click="removeChapter(chapter, index); checkEditing();" class="buttonWithBg">
               <i class="fa fa-minus-circle" aria-hidden="true"></i>
             </button>
           </template>
         </base-chapters>
         <div id="addBookBttn">
-          <button
-            @click="
-              addChapter();
-              checkEditing();
-            "
-            class="buttonWithBg"
-          >
+          <button @click="addChapter(); checkEditing();" class="buttonWithBg">
             Chapter<i class="fa fa-plus-circle" aria-hidden="true"></i>
           </button>
         </div>
@@ -444,6 +354,7 @@ img {
 .read:hover {
   cursor: pointer;
 }
+
 .otherOptions:hover {
   cursor: pointer;
 }
@@ -489,6 +400,7 @@ input[type="file"]#posterFile::file-selector-button {
 .removeBookBttn:hover {
   cursor: pointer;
 }
+
 input[type="text"].titleAndAuthor {
   border: 1px solid #eeeeee;
   background-color: #393e46;
@@ -496,6 +408,7 @@ input[type="text"].titleAndAuthor {
   color: #eeeeee;
   border-radius: 10px;
 }
+
 input[type="text"].chapterName {
   border: 1px solid #eeeeee;
   background-color: #393e46;
@@ -504,6 +417,7 @@ input[type="text"].chapterName {
   border-radius: 10px;
   width: 20vw;
 }
+
 input[type="number"].chapterNumber {
   border: 1px solid #eeeeee;
   background-color: #393e46;
@@ -512,6 +426,7 @@ input[type="number"].chapterNumber {
   border-radius: 10px;
   width: 6vw;
 }
+
 input[type="number"].pagesInput {
   border: 1px solid #eeeeee;
   background-color: #393e46;
@@ -532,14 +447,17 @@ textarea {
   color: #eeeeee;
   resize: none;
 }
+
 textarea:focus {
   outline: none !important;
   border: 2px solid #4ecca3;
 }
+
 input[type="number"]:focus {
   outline: none !important;
   border: 2px solid #4ecca3;
 }
+
 input[type="text"]:focus {
   outline: none !important;
   border: 2px solid #4ecca3;
@@ -574,8 +492,40 @@ input[type="text"]:focus {
   from {
     background-color: red;
   }
+
   to {
     background-color: yellow;
   }
+}
+
+@media (max-width: 766px) {
+  img {
+    max-width: 80vw;
+  }
+
+  input[type="file"]#posterFile::file-selector-button {
+    width: 80vw;
+  }
+
+  .read {
+    margin-bottom: 2vh;
+  }
+
+  .otherOptions {
+    margin-left: 3px;
+  }
+
+  textarea {
+    width: 82vw;
+    height: 200px;
+  }
+
+  input[type="text"].chapterName {
+  width: 80%;
+}
+
+input[type="number"].chapterNumber {
+  width: 60%;
+}
 }
 </style>

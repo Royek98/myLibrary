@@ -127,4 +127,15 @@ P {
 .bottom {
   clear: both;
 }
+
+@media (max-width: 766px) {
+  dialog {
+    width: 90%;
+    top: 0vh;
+    left: 0%;
+    display: flex;
+    flex-direction: column;
+  }
+
+}
 </style>
