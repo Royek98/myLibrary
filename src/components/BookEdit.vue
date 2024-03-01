@@ -19,6 +19,7 @@
             <i class="fa fa-minus-circle" aria-hidden="true"></i></button></span>
       </template>
       <template #poster>
+        Note: This is for presentation purposes only. There is no file upload available!
         <div v-if="book.poster !== null">
           <img :src="book.poster" />
           <button @change="checkEditing" @click="book.poster = null" class="buttonWithBg">
@@ -249,7 +250,8 @@ export default {
     },
     onPosterChange(e) {
       var files = e.target.files || e.dataTransfer.files;
-      this.book.poster = "../../posters/" + files[0].name;
+      // this.book.poster = "../../posters/" + files[0].name;
+      this.book.poster = "../../posters/noimg.jpeg";
       this.checkEditing();
     },
     onFileChange(e) {
