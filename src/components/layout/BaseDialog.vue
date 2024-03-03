@@ -113,6 +113,8 @@ P {
 
 .genres {
   clear: both;
+  display: flex;
+  flex-wrap: wrap;
   /* max-width: 200px; */
   /* margin-left: -45px; */
 }

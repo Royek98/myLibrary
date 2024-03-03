@@ -88,21 +88,21 @@ nav {
     margin-top: -2px;
 }
 
-
 @media only screen and (max-width: 1500px) {
     nav {
         overflow-y: scroll;
         scrollbar-color: #4ECCA3 #393E46;
         scrollbar-width: thin;
+        height: 86vh;
     }
 }
 
-@media (max-height: 600px) {
+@media (max-height: 800px) {
     nav {
         overflow-y: scroll;
         scrollbar-color: #4ECCA3 #393E46;
         scrollbar-width: thin;
-        -webkit-overflow-scrolling: touch; 
+        height: 86vh;
     }
 }
 </style>

@@ -10,6 +10,7 @@
         <input type="number" v-model.number="book.maxPages" class="pagesInput" @change="checkEditing"
           :class="{ invalid: invalidMaxPages() }" />
       </template>
+
       <template #author>Author:
         <input type="text" v-model.trim="book.author" class="titleAndAuthor" @change="checkEditing"
           :class="{ invalid: invalidAuthor() }" />
@@ -18,6 +19,7 @@
           <button @change="checkEditing" @click="removeFile()" class="buttonWithBg">
             <i class="fa fa-minus-circle" aria-hidden="true"></i></button></span>
       </template>
+
       <template #poster>
         Note: This is for presentation purposes only. There is no file upload available!
         <div v-if="book.poster !== null">
@@ -30,40 +32,31 @@
           <input id="posterFile" type="file" @change="onPosterChange" />
         </div>
       </template>
+
       <template #genres>
-        <genre-badge v-for="genre in book.genres" :key="genre">
-          {{ genre }}
-          <button @click="removeGenre(genre); checkEditing();" class="removeBookBttn">
-            <i class="fa fa-minus-circle" aria-hidden="true"></i>
-          </button>
-        </genre-badge>
-        <span v-if="genreAlert" id="genreAlert">Already a genre</span>
-        <button @click="showGenres = true" v-if="!showGenres" class="buttonWithBg genreBttn"
-          :class="{ invalidGenre: invalidGenre() }">
-          Genre<i class="fa fa-plus-circle" aria-hidden="true"></i>
-        </button>
-        <select v-if="showGenres">
-          <option @click="showGenres = false">Cancel</option>
-          <option v-for="gen in getGenres" :key="gen" @click="addGenre(gen); showGenres = false; checkEditing();">
-            {{ gen }}
-          </option>
-        </select>
+        <genre-checkbox v-for="genre in genres" :key="genre" :label="genre" @genre-checked="genreChecked"
+          :value="book.genres.includes(genre)">
+        </genre-checkbox>
       </template>
+
       <template #description>
         Description:
         <textarea v-model.trim="book.description" @change="checkEditing" :class="{ invalid: invalidDesc() }"></textarea>
       </template>
+
       <template #read>
         <button class="read" @click="save" :class="{ unsaved: editing }">
           Save
         </button>
         <router-link class="otherOptions" :to="linkBack" @click="editing = false">Cancel</router-link>
       </template>
+
       <template #chapters>
         <base-chapters v-for="(chapter, index) in book.chapters" :key="chapter">
           <template #num>{{ index + 1 }}</template>
           <input type="text" v-model.trim="chapter.name" class="chapterName" @change="checkEditing"
             :class="{ invalid: invalidNameChapter(index) }" />
+
           <template #page>
             <input type="number" min="1" v-model.number="chapter.page" class="chapterNumber" @change="checkEditing"
               :class="{ invalid: invalidNumber(index) }" />
@@ -87,9 +80,17 @@ import BaseDialog from "./layout/BaseDialog.vue";
 import { useBooks } from "../stores/useBooks.js";
 import { mapState, mapActions, mapWritableState } from "pinia";
 import GenreBadge from "./layout/GenreBadge.vue";
+import GenreCheckbox from "./layout/GenreCheckbox.vue";
 import BaseChapters from "./layout/BaseChapters.vue";
 import _ from 'lodash';
 export default {
+  emits: ["close"],
+  components: {
+    BaseDialog,
+    GenreBadge,
+    BaseChapters,
+    GenreCheckbox
+  },
   data() {
     return {
       book: {
@@ -111,7 +112,6 @@ export default {
       },
       showGenres: false,
       bookFromDb: null,
-      genreAlert: false,
       formIsValid: true,
       formIsValidTitle: true,
       formIsValidAuthor: true,
@@ -188,26 +188,21 @@ export default {
       this.formIsValidChapterName[inx] = true;
       return false;
     },
-    invalidGenre() {
-      if (this.book.genres.length < 1) {
-        this.formIsValidGenres = false;
-        return true;
-      }
-      this.formIsValidGenres = true;
-      return false;
-    },
     removeGenre(genre) {
       return (this.book.genres = this.book.genres.filter(
         (genres) => genres !== genre
       ));
     },
+    genreChecked(genre) {
+      if(genre.value) {
+        this.book.genres.push(genre.label);
+      } else if(!genre.value && this.book.genres.includes(genre.label)) {
+        this.book.genres = this.book.genres.filter(g => g !== genre.label)
+      }
+    },
     addGenre(genre) {
-      if (!this.book.genres.some((genres) => genres === genre)) {
+      if (!this.book.genres.includes(genre)) {
         this.book.genres.push(genre);
-      } else {
-        this.genreAlert = true;
-
-        setTimeout(() => (this.genreAlert = false), 2000);
       }
     },
     removeChapter(chapter, index) {
@@ -265,14 +260,8 @@ export default {
     ...mapActions(useBooks, ["editBook"]),
     ...mapActions(useBooks, ["addBook"]),
   },
-  emits: ["close"],
-  components: {
-    BaseDialog,
-    GenreBadge,
-    BaseChapters,
-  },
   computed: {
-    ...mapState(useBooks, ["books"]),
+    ...mapState(useBooks, ["books", "genres"]),
     ...mapState(useBooks, ["getGenres"]),
     ...mapWritableState(useBooks, ["editing"]),
     linkBack() {
@@ -465,23 +454,8 @@ input[type="text"]:focus {
   border: 2px solid #4ecca3;
 }
 
-#genreAlert {
-  float: left;
-  padding: 9px;
-  border: 1px solid #393e46;
-  background-color: #cc4e4e;
-  color: #eeeeee;
-  margin-left: 8px;
-  margin-top: 8px;
-  border-radius: 10px;
-}
-
 .invalid {
   border: 2px solid red !important;
-}
-
-.invalidGenre {
-  color: red !important;
 }
 
 .unsaved {
@@ -523,11 +497,11 @@ input[type="text"]:focus {
   }
 
   input[type="text"].chapterName {
-  width: 80%;
-}
+    width: 80%;
+  }
 
-input[type="number"].chapterNumber {
-  width: 60%;
-}
+  input[type="number"].chapterNumber {
+    width: 60%;
+  }
 }
 </style>
