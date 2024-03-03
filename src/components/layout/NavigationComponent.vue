@@ -93,7 +93,6 @@ nav {
         overflow-y: scroll;
         scrollbar-color: #4ECCA3 #393E46;
         scrollbar-width: thin;
-        height: 86vh;
     }
 }
 
@@ -102,6 +101,11 @@ nav {
         overflow-y: scroll;
         scrollbar-color: #4ECCA3 #393E46;
         scrollbar-width: thin;
+    }
+}
+
+@media (hover: none) {
+    nav {
         height: 86vh;
     }
 }
