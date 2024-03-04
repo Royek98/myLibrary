@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 5050",
-    "host": "vite --host"
+    "host": "vite --host",
+    "test": "vitest"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -19,6 +20,10 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.2",
-    "vite": "^2.8.4"
+    "vite": "^2.8.4",
+    "vitest": "^1.2.2",
+    "@vue/test-utils": "^2.4.4",
+    "@pinia/testing": "^0.0.10",
+    "jsdom": "^24.0.0"
   }
 }
