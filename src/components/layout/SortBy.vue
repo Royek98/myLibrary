@@ -1,13 +1,4 @@
 <template>
-
-  <!-- <select name="cars" id="cars" class="custom-select">
-    <option value="volvo">Alphabetically ASC</option>
-    <option value="saab">Alphabetically DESC</option>
-    <option value="mercedes">Author ASC</option>
-    <option value="mercedes">Author DESC</option>
-    <option value="audi">Date ASC</option>
-    <option value="audi">Date DESC</option>
-  </select> -->
   <p>Sort By:</p>
   <ul @click="clicked" class="noselect">
     <li
@@ -29,7 +20,6 @@ export default {
   data() {
     return {
       isClicked: false,
-      // sortBy: ['Alphabetically', 'Author', 'Date'],
     };
   },
   computed: {

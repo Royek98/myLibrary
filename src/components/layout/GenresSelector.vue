@@ -1,10 +1,10 @@
 <template>
   <p class="noselect genreButton" @click="show = !show">Genres:</p>
-  <div id="genres" v-if="show">
+  <div class="genres" v-if="show">
     <genre-checkbox v-for="genre in genres" :key="genre" :label="genre" @genre-checked="genreChecked"
       :value="selectedGenres.includes(genre)"></genre-checkbox>
   </div>
-  <div id="genres" v-else>
+  <div class="genres" v-else>
     <genre-checkbox v-for="genre in selectedGenres" :key="genre" :label="genre" @genre-checked="genreChecked"
       value="true"></genre-checkbox>
   </div>
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style scoped>
-#genres {
+.genres {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

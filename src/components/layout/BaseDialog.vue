@@ -37,7 +37,12 @@
 import { useBooks } from "../../stores/useBooks.js";
 import { mapState } from "pinia";
 export default {
-  props: ["show"],
+  props: {
+    show: {
+      type: Boolean,
+      default: true
+    }
+  },
   emits: ["close"],
   computed: {
     ...mapState(useBooks, ['editing'])
@@ -145,6 +150,7 @@ P {
     display: flex;
     flex-direction: column;
   }
+
   .right {
     width: 90%;
   }
