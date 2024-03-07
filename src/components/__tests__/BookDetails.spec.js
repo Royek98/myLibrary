@@ -17,7 +17,6 @@ describe("BookDetails", () => {
     const mockRouter = {
         push: vi.fn(),
     };
-    vi.mock('vue-router', () => mockRouter);
 
     beforeEach(async () => {
         wrapper = mount(BookDetails, {

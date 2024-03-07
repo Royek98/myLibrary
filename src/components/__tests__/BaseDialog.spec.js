@@ -4,13 +4,11 @@ import { createTestingPinia } from '@pinia/testing'
 import { useBooks } from '../../stores/useBooks.js';
 
 describe("BaseDialog", () => {
-
+    const mockRouter = {
+        push: vi.fn(),
+    };
+    
     let wrapper;
-        const mockRouter = {
-            push: vi.fn(),
-        };
-        vi.mock('vue-router', () => mockRouter);
-
         beforeEach( async () => {
             wrapper = mount(BaseDialog, {
                 props: {
