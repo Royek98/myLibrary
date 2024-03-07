@@ -4,16 +4,6 @@
   </div>
 </template>
 
-<script>
-import BooksList from "../BooksList.vue";
-
-export default {
-  components: {
-    BooksList,
-  },
-};
-</script>
-
 <style scoped>
 div {
     overflow-y: scroll;

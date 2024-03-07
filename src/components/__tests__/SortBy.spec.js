@@ -1,6 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing'
-import { useBooks } from '../../stores/useBooks';
 import SortBy from '../layout/SortBy.vue';
 
 describe("SortBy", () => {
