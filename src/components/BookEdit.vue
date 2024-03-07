@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="saveBook">
-    <base-dialog show="true">
+    <base-dialog :show=true>
       <template #title>Title:
         <input type="text" v-model.trim="book.title" class="titleAndAuthor" :class="{ invalid: invalidTitle() }"
           @change="checkEditing" />
@@ -93,6 +93,7 @@ export default {
   },
   data() {
     return {
+      show: true,
       book: {
         id: null,
         title: "",
